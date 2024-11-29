@@ -381,8 +381,10 @@ class GetUserMediaImpl {
 
         track.setEnabled(true);
         tracks.put(id, new TrackPrivate(track, videoSource, videoCaptureController, surfaceTextureHelper));
-
-        videoCaptureController.startCapture();
+        
+        reactContext.runOnUiQueueThread(()->{
+            videoCaptureController.startCapture();
+        });
 
         return track;
     }
